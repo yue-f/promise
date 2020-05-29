@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./KPromise.js"></script>
+</head>
+<body>
+    
+</body>
+
+<script>
+    // let p1 = new KPromise((reslove, reject) => {
+    //     reslove("success")
+    //     // reject("error")
+    // })
+    // p1.then(res=>{
+    //     // console.log(res)
+    // }, errr =>{
+    //     // console.log(errr)
+    // })
+
+    // // then 返还值， 1.没有返还值，2. 普通返还值， 3. 返还promise对象
+    // // 返还KPromise ---> 链式操作
+    // let p2 = p1.then(res=>{
+    //     return 111;
+
+    //     // return new KPromise((resolve, reject) => {
+    //     //     resolve("返还的值")
+    //     // })
+
+    // }, error => {
+    //     console.log("...", error)
+    // })
+    // console.log(p2)
+
+    
+    // 微任务 宏任务；
+    // setTimeout 写法是宏任务，按照异步队列执行
+    // promise 本身是一个微任务
+
+    // let p1 = new KPromise((resolve, reject) => {
+    //     resolve(2222)
+    // })
+    // p1.then(res => {
+    //     console.log(res)
+    // }).catch(err => {
+    //     console.log("err", err)
+    // })
+
+    // let p1 = KPromise.resolve("eva success");
+    // console.log("p1::", p1);
+
+    // let p2 = KPromise.reject("eva error");
+    // console.log("p2::", p2)
+
+    // finally
+    // let p1 = new KPromise((resolve, reject) => {
+    //     reject("eva error")
+    // })
+    // p1.finally(() => {
+    //     console.log("执行完毕")
+    // })
+
+    // all
+    // let p1 = new KPromise(resolve => {
+    //     resolve("111");
+    // })
+    // let p2 = new KPromise(resolve => {
+    //     resolve(222);
+    // })
+    // KPromise.all([p1,p2]).then(res => {
+    //     console.log("res::", res)
+    // })
+
+    //race
+    let p1 = new KPromise(resolve => {
+        resolve("111");
+    })
+    let p2 = new KPromise(resolve => {
+        resolve(222);
+    })
+    // 谁执行快 返回谁的结果
+    KPromise.race([p1,p2]).then(res => {
+        console.log("res::", res)
+    })
+
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script >
+
+    setTimeout(() => {
+        console.log("我是settimeout 的回调")
+    }, 0);
+
+    // 监听DOM发生变化时执行
+    let ob = new MutationObserver(function () { 
+        console.log("dom 有变动回调函数执行，微任务");
+     })
+     
+     // 监听body 的 属性的变化
+     ob.observe(document.body, {
+         attributes: true
+     })
+
+     document.body.setAttribute("yao", Math.random())
+</script>
+</html>
